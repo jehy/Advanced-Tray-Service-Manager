@@ -1,0 +1,216 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;//, unit2;
+type
+  TForm1 = class(TForm)
+    Button4: TButton;
+    Button5: TButton;
+    GroupBox1: TGroupBox;
+    CheckBox2: TCheckBox;
+    Edit1: TEdit;
+    Button3: TButton;
+    CheckBox1: TCheckBox;
+    GroupBox2: TGroupBox;
+    Memo1: TMemo;
+    Label1: TLabel;
+    Button2: TButton;
+    //procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure CheckBox2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations } 
+   res: Pchar;
+  end;
+
+//var
+  //Form1: TForm1;
+var
+  H: THandle=0;
+  ChooseDirOrFile: function (AllowChooseFile: boolean; AllowChooseDir: boolean; FormCaption: Pchar):PChar;stdcall;
+
+implementation
+
+{$R *.dfm}
+     {
+procedure TForm1.Button1Click(Sender: TObject);
+//var FileDlg: TForm2;
+begin
+res:=ChooseDirOrFile(true,true,'Please, choose dir or file to represent application');
+if(res<>nil)
+  then Edit1.Text:=res;
+{
+FileDlg:=Tform2.Create(Application);
+FileDlg.ShowModal();
+if(FileDlg.ChosenFile<>nil)
+  then Edit1.Text:=FileDlg.ChosenFile;
+FileDlg.Free;
+StrDispose(FileDlg.ChosenFile);
+}
+{end;    }
+procedure FileCopy(CopyFrom: string;CopyTo:string);
+var
+  iFileHandle: Integer;
+  iFileLength: Integer;
+  iBytesRead: Integer;
+  Buffer: PChar;
+begin
+//try
+  iFileHandle := FileOpen(CopyFrom, fmOpenRead);
+  iFileLength := FileSeek(iFileHandle,0,2);
+  FileSeek(iFileHandle,0,0);
+  Buffer := PChar(AllocMem(iFileLength + 1));
+  iBytesRead :=FileRead(iFileHandle, Buffer^, iFileLength);
+  FileClose(iFileHandle);
+
+  if(FileExists(CopyTo))then iFileHandle :=FileOpen(CopyTo,fmCreate)
+  else iFileHandle:=FileCreate(CopyTo);
+  //else iFileHandle := FileCreate(CopyTo);
+  FileWrite(iFileHandle, Buffer^, iBytesRead);
+  FileClose(iFileHandle);
+  //finally
+    FreeMem(Buffer);
+//end;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+//var FileDlg: TForm2;
+begin
+res:=ChooseDirOrFile(true,true,'Please, choose dir or file');
+if(res<>nil)
+  then Memo1.lines.add(res);//Edit2.Text:=res;
+{
+FileDlg:=Tform2.Create(Application);
+FileDlg.ShowModal();
+if(FileDlg.ChosenFile<>nil)
+  then Edit2.Text:=FileDlg.ChosenFile;
+FileDlg.Free;
+StrDispose(FileDlg.ChosenFile);
+}
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+//var FileDlg: TForm2;
+begin
+res:=ChooseDirOrFile(true,true,'Please, choose command file');
+if(res<>nil)
+  then Edit1.Text:=res;
+ {res:=ChooseDirOrFile(false,true,'Please, choose working directory');
+if(res<>nil)
+  then Edit3.Text:=res;
+  }
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+var
+contents: string;
+dir,search,filename: string;
+temp: pchar;
+sr: TSearchRec;
+FileAttrs: Integer;
+FilesQuan: Integer;
+//temp2:pchar;
+begin
+//<init>
+FilesQuan:=0;
+dir:=ExtractFileDir(Application.ExeName)+'\plugins\command\';
+search:=dir+'*';
+//MessageBox(NULL,dir,'',MB_OK);
+//memo2.Lines.Add(dir);
+//MessageBox(NULL,temp2,'',MB_OK);
+FileAttrs := faAnyFile+faSysFile+faHidden+faReadOnly;
+if FindFirst(search, FileAttrs, sr) = 0 then
+  begin
+    repeat
+      //memo2.Lines.Add('found!');
+      Inc(FilesQuan);
+    until FindNext(sr) <> 0;
+    FindClose(sr);
+end;
+filename:=dir+'command_'+IntToStr(FilesQuan)+'.bat';
+//</init>
+
+if(Checkbox2.Checked)then //If we use a ready file
+begin
+  if(Checkbox1.Checked)then//copy file
+  begin
+    FileCopy(Edit1.Text,filename);
+    contents:='<app>'+filename+'</app>';
+  end
+  else contents:='<app>'+Edit1.Text+'</app>';
+end
+else
+begin
+  Memo1.Lines.SaveToFile(filename);
+  contents:='<app>'+filename+'</app>';
+end;
+contents:=contents+'<RunPlugin>shellexec</RunPlugin><way></way><dir></dir><launch>SW_HIDE</launch><action>open</action><Refresh>0</Refresh>';
+temp:=pchar(contents);
+res:=StrAlloc(strlen(temp)+1);
+StrCopy(res,temp);
+Close();
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+res:=nil;
+Close();
+end;
+
+
+procedure TForm1.FormDestroy(Sender: TObject);
+begin
+if(res<>nil)then StrDispose(res);
+FreeLibrary(H);
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+var
+lib: string;
+begin  //  {
+lib:=ExtractFileDir(Application.ExeName)+'\plugins\common\ChooseFileDlg.dll';
+H:=LoadLibrary(pchar(lib));
+if (H=0) then
+begin
+  MessageBox(Application.Handle,pchar('Library in "'+lib+'" could not be loaded!'),'Error',MB_ICONERROR);
+  Halt(2);
+end;
+ChooseDirOrFile:=GetProcAddress(H,'ChooseDirOrFile');     //   }
+end;
+
+procedure TForm1.CheckBox2Click(Sender: TObject);
+begin
+if(checkbox2.Checked)then
+begin
+  Edit1.Enabled:=true;
+  Checkbox1.Enabled:=true;
+  Button3.Enabled:=true;
+  Memo1.Enabled:=false;
+  Button2.Enabled:=false;
+  //Groupbox1.Enabled:=true;
+  //Groupbox2.Enabled:=false;
+end
+else
+begin
+  //Groupbox1.Enabled:=false;
+  //Groupbox2.Enabled:=true;
+  Edit1.Enabled:=false;
+  Checkbox1.Enabled:=true;
+  Button3.Enabled:=true;
+  Memo1.Enabled:=false;
+  Button2.Enabled:=false;
+end;
+//Checkbox2.Enabled:=true;
+end;
+
+end.

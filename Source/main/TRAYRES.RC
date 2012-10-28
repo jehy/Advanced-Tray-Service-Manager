@@ -1,0 +1,19 @@
+// trayres.rc
+//
+// Minimize window in Tray with popup menu with icons.  
+// This code is free, you may use it without any warranty or too much expectations...
+// If you find something wrong then post your corrections or suggestions on the web.
+// If you think to do better than me simply you do not use this code but send to me the your :)
+//
+// 2003/2004 by Massimiliano Miani (imianz@tiscalinet.it)
+
+#include "ctray.h"
+//App icon
+APP_ICON  ICON  DISCARDABLE  "app.ico"
+//Tray icon
+TRAY_ICON  ICON  DISCARDABLE  "tray.ico"
+//Popup menu icons
+IDB_MENU_CHECK BITMAP DISCARDABLE "menu_ck.bmp"
+IDB_MENU_CLOSE BITMAP DISCARDABLE "menu_close.bmp"
+IDB_MENU_ABOUT BITMAP DISCARDABLE "menu_about.bmp"
+

@@ -1,0 +1,7 @@
+; document.def : Declares the module parameters for the DLL.
+
+LIBRARY      "document_vis"
+
+EXPORTS
+    ; Explicit exports can go here
+	DlgNewItem

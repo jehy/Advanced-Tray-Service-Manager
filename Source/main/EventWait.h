@@ -1,0 +1,1 @@
+void EventWait (LPVOID lpParam);

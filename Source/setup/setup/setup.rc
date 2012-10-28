@@ -1,0 +1,276 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)\r\n"
+    "LANGUAGE 25, 1\r\n"
+    "#pragma code_page(1251)\r\n"
+    "#include ""res\\setup.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\setup.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About setup"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "setup Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2007",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP
+END
+
+IDD_SETUP_DIALOG DIALOGEX 0, 0, 382, 239
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "ATSM ++ Setup"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Save",IDOK,325,22,50,14
+    PUSHBUTTON      "Exit",IDCANCEL,325,41,50,14
+    CONTROL         "",IDC_TREE1,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_EDITLABELS | TVS_NOTOOLTIPS | TVS_TRACKSELECT | WS_BORDER | WS_TABSTOP,7,16,203,221
+    PUSHBUTTON      "Add Submenu",IDC_BUTTON1,235,22,67,14
+    PUSHBUTTON      "Delete Item",IDC_BUTTON2,235,41,67,14
+    PUSHBUTTON      "Add SubItem",IDC_BUTTON3,235,104,67,14
+    PUSHBUTTON      "Rename Item",IDC_BUTTON4,235,60,67,14
+    LTEXT           "You can use command buttons or left-click menu nodes to edit preferences",IDC_STATIC,221,207,140,21
+    LTEXT           "Menu:",IDC_STATIC,7,7,21,8
+    PUSHBUTTON      "Edit item's XML",IDC_BUTTON5,235,159,67,14
+    PUSHBUTTON      "New item from XML",IDC_BUTTON6,235,178,67,14
+    GROUPBOX        "Debug functions",IDC_STATIC,221,146,93,53
+    GROUPBOX        "Actions",IDC_STATIC,221,11,93,73
+    GROUPBOX        "Wizards",IDC_STATIC,221,93,93,48
+    PUSHBUTTON      "Edit SubItem",IDC_BUTTON7,235,121,67,14
+END
+
+IDD_DIALOG1 DIALOGEX 0, 0, 293, 175
+STYLE DS_SYSMODAL | DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add new item to menu"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Next>>",IDOK,228,138,52,14
+    PUSHBUTTON      "Cancel",IDCANCEL,228,103,52,14
+    LTEXT           "Please, choose plugin to use from  application  plugin direcory",IDC_STATIC,7,7,139,18
+    LISTBOX         IDC_LIST2,7,29,139,138,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP,WS_EX_TRANSPARENT | WS_EX_LEFTSCROLLBAR
+    EDITTEXT        IDC_EDIT1,177,48,103,14,ES_AUTOHSCROLL
+    LTEXT           "Choose title for new item",IDC_STATIC,199,29,81,8
+    PUSHBUTTON      "Info",IDC_BUTTON1,228,120,52,14
+END
+
+IDD_DIALOG2 DIALOGEX 0, 0, 254, 215
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit\\New Item"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,197,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,197,27,50,14
+    CONTROL         "Monitor",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,26,66,40,10
+    COMBOBOX        IDC_COMBO1,87,29,105,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO2,87,46,105,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Setup Plugin",IDC_STATIC,26,31,40,10
+    LTEXT           "Run Plugin",IDC_STATIC,26,47,40,11
+    EDITTEXT        IDC_EDIT1,6,82,241,126,ES_MULTILINE | ES_AUTOHSCROLL | ES_NOHIDESEL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Item Title",IDC_STATIC,26,15,31,8
+    EDITTEXT        IDC_EDIT2,87,9,105,14,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "setup.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "setup.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_SETUP_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 375
+        VERTGUIDE, 221
+        VERTGUIDE, 235
+        VERTGUIDE, 302
+        VERTGUIDE, 314
+        VERTGUIDE, 325
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 232
+        HORZGUIDE, 11
+        HORZGUIDE, 22
+        HORZGUIDE, 41
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 280
+        VERTGUIDE, 146
+        VERTGUIDE, 214
+        VERTGUIDE, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+        HORZGUIDE, 25
+        HORZGUIDE, 29
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 247
+        VERTGUIDE, 6
+        VERTGUIDE, 26
+        VERTGUIDE, 87
+        VERTGUIDE, 192
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 208
+        HORZGUIDE, 23
+        HORZGUIDE, 41
+        HORZGUIDE, 58
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About setup..."
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+LANGUAGE 25, 1
+#pragma code_page(1251)
+#include "res\setup.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
